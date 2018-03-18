@@ -24,7 +24,7 @@ namespace skracacz.Controllers
         {
             Link link = _repository.GetLink(shortUrl);
 
-            if (link == null)
+            if (link == null || link.FullUrl == null)
                 return Content("Nie ma takiej strony, nieprawidłowy adres!!");
 
             if(!(link.FullUrl.StartsWith("http://") || link.FullUrl.StartsWith("https://")))

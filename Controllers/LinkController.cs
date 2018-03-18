@@ -27,7 +27,8 @@ namespace skracacz.Controllers
         [HttpPost]
         public IActionResult Create(Link link)
         {
-            _repository.AddLink(link);
+              _repository.AddLink(link);
+                        
             return Redirect("Index");
         }
 
