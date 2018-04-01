@@ -11,6 +11,7 @@ using skracacz.Repository;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.EntityFrameworkCore;
 
 namespace skracacz
 {
@@ -28,6 +29,7 @@ namespace skracacz
             services.AddMvc();
             services.AddSingleton<ILinksRepository, LinksRepository>();
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new Info { Title = "Skracacz API", Version = "v1" }));
+            services.AddDbContext<SkracaczDBContext>(options => options.UseSqlite(Configuration.GetConnectionString("SkracaczDbConnection")));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
