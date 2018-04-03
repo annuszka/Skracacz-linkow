@@ -27,7 +27,7 @@ namespace skracacz
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddSingleton<ILinksRepository, LinksRepository>();
+            services.AddScoped<ILinksRepository, LinksRepository>();
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new Info { Title = "Skracacz API", Version = "v1" }));
             services.AddDbContext<SkracaczDBContext>(options => options.UseSqlite(Configuration.GetConnectionString("SkracaczDbConnection")));
         }
@@ -42,6 +42,11 @@ namespace skracacz
 
             app.UseStaticFiles();
 
+
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Skracacz API"));
+            app.UseSwagger();
+
+
             app.UseMvc(routes =>
             {
  
@@ -52,11 +57,9 @@ namespace skracacz
             );
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Link}/{action=Index}");
+                    template: "{controller=LinkApi}/{action=Index}/{id?}");
             });
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Skracacz API"));
 
         }
     }

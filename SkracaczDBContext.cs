@@ -14,5 +14,6 @@ namespace skracacz
 
         }
         public DbSet<Link> Links { get; set; }
+
     }
 }

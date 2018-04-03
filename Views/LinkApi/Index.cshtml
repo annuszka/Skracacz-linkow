@@ -1,6 +1,7 @@
 @model List<skracacz.Models.Link>
+
 <div>
-    @using (Html.BeginForm("Create", "Link", FormMethod.Post))
+    @using (Html.BeginForm("AddLink", "LinkApi", FormMethod.Post))
     {
         <input type="text" name="FullUrl" placeholder="Full Url"/> <br/>
         <button type="submit">Add</button>
@@ -15,7 +16,7 @@
             <td><strong>Short url: </strong></td>
 
             <td><a href="@Url.Action("RedirectToSite", "Redirect", new { shortUrl = item.ShortUrl})" target="_blank">@(Html.DisplayFor(model => item.ShortUrl))</a></td>
-            <td>   | @Html.ActionLink("Delete", "Delete", "Link", item)</td>
+            <td>   | @Html.ActionLink("Delete", "Delete", "LinkApi", item.Id)</td>
         </tr>
         }
     </table>

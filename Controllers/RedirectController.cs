@@ -10,6 +10,7 @@ using skracacz.Interfaces;
 
 namespace skracacz.Controllers
 {
+    [Route("{shortUrl}")]
     public class RedirectController : Controller
     {
         public ILinksRepository _repository;
@@ -22,7 +23,10 @@ namespace skracacz.Controllers
         [HttpGet]
         public IActionResult RedirectToSite(string shortUrl)
         {
-            Link link = _repository.GetLink(shortUrl);
+            Hashids h = new Hashids("abcdefgh", 6);
+            int id = h.Decode(shortUrl).First<int>();
+
+            Link link = _repository.Get(id);
 
             if (link == null || link.FullUrl == null)
                 return Content("Nie ma takiej strony, nieprawidłowy adres!!");
