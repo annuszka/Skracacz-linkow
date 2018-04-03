@@ -63,7 +63,7 @@ namespace skracacz.Controllers
         }
 
         //POST api/links
-        [HttpPost]
+        [HttpPost("[action]")]
         public IActionResult AddLink(string FullUrl)
         {
             Link l = new Link();

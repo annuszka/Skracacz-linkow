@@ -11,12 +11,5 @@ namespace skracacz.Interfaces
         Link Create(Link link);
         Link Update(Link link);
         void Delete(int id);
-
-        /*
-         * List<Link> GetLinks();
-         * void AddLink(Link link);
-         * void Delete(Link link);
-         * Link GetLink(string hash);
-        */
     }
 }
